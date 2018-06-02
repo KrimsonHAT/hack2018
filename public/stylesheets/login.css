@@ -17,7 +17,7 @@ pagina se aplica el tamaño de fuente
 #Contenedor{
 	width: 400px;
 	margin: 50px auto;
-    background-color: rgb(235, 46, 46) ;opacity: 1;
+    background-color: rgb(234, 46, 46) ;opacity: 1;
     border: 1px solid rgb(157, 215, 219);
     box-shadow:  rgba(0,0,0,0.5) 8px 8px 8px ;
 	height: 400px;
