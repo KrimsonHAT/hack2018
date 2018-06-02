@@ -13,6 +13,10 @@ body{
   
     display: flex;
     align-items: center;
+    border: 1px solid rgb(157, 215, 219);
+    box-shadow:  rgba(0,0,0,0.5) 8px 8px 8px ;
+	height: 400px;
+	border-radius:8px;
 }
 
 h1{
@@ -28,9 +32,12 @@ h1{
 .container{
     padding-bottom: 5px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(218, 113, 113, 0.9);
     width:600px;
     max-width: 80vw;
+    border: 1px solid rgb(157, 215, 219);
+    box-shadow:  rgba(0,0,0,0.5) 8px 8px 8px ;
+    border-radius:8px;
 }
 
 #evento{
@@ -69,3 +76,13 @@ h1{
     }
  
 }
+Video {
+	position: fixed;
+	min-width: 100%;
+	min-height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	z-index: -1;
+}
+
