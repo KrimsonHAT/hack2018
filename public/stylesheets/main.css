@@ -14,6 +14,33 @@
     border: 2px solid #000;
     border-radius: 5%;
     -moz-border-radius: 5%;
+    border-top-left-radius: 50px !important;
+}
+
+.card-project{
+    background: rgb(9, 84, 145) !important;
+    border-radius: 0 !important;
+}
+
+.card-project h3{
+    color: white;
+}
+
+.card-project p{
+    color: rgb(199, 199, 199);
+}
+
+.card-feature{
+    background: rgb(177, 32, 13) !important;
+    border-radius: 0 !important;
+}
+
+.card-feature h3{
+    color: white;
+}
+
+.card-feature p{
+    color: rgb(199, 199, 199);
 }
 
 .containerFeature{

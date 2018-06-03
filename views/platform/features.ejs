@@ -29,15 +29,17 @@
             <h1>Features</h1>
             
             <div class="row" id="features">
+                <% if(isLeader) { %>
                 <div class=" col-lg-3 col-md-4">
 
-                    <% if(isLeader) { %>
+                    
                         <div class="card" id="add" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
 
                         </div>
-                        <% } %>
+                        
 
                 </div>
+                <% } %>
 
 
                 <!--
@@ -45,7 +47,7 @@
                 When clicked a modal is shown
         -->
                 <div class="col-lg-3 col-md-4" v-for="feature in features">
-                    <div class="card" onclick="loadModal()" data-toggle="modal" data-target="#exampleModalCenter">
+                    <div class="card card-feature" onclick="loadModal()" data-toggle="modal" data-target="#exampleModalCenter">
                         <center>
                             <h3> {{ feature.name }}</h3>
                             <!--div class="progress">
