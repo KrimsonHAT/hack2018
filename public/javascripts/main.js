@@ -1,3 +1,6 @@
+function loadModal() {
+  $('#myInput').trigger('focus')
+}
 
 $( "#send" ).click(function( event ) {
 
@@ -9,7 +12,7 @@ $( "#send" ).click(function( event ) {
   }
 });
 
-
+//Code for getting projects
 $.getJSON('api/gProjects', function(data){
     //userNameInDB = data;
     console.log(data);
