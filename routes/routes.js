@@ -190,4 +190,15 @@ router.get('/project', function(req, res, next) {
   //res.render('platform/features');
 });
 
+/* LOGOUT */
+router.get('/logout', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  req.session.destroy();
+  res.redirect('/login');
+});
+
 module.exports = router;
