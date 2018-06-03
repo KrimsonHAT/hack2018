@@ -131,4 +131,24 @@ router.get('/gOtherUsers', function(req, res, next) {
   });
 });
 
+router.get('/gTasks', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  var feature = parseInt(req.query.feature);
+
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = "SELECT t.task_id, t.description, t.status, u.username FROM task t JOIN participates p ON t.task_id = p.task JOIN user u ON p.user = u.username JOIN feature f ON f.feature_id = t.feature WHERE f.feature_id = "+mysql.escape(feature);
+    con.query(sql, function(err, result) {
+      con.release();
+      if(err) throw err;
+      res.json(result);
+    });
+  });
+
+});
+
 module.exports = router;
