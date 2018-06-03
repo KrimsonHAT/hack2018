@@ -141,7 +141,7 @@ router.get('/gTasks', function(req, res, next) {
 
   pool.getConnection(function(err, con) {
     if(err) throw err;
-    sql = "SELECT t.task_id, t.description, t.status, u.username FROM task t JOIN participates p ON t.task_id = p.task JOIN user u ON p.user = u.username JOIN feature f ON f.feature_id = t.feature WHERE f.feature_id = "+mysql.escape(feature);
+    sql = "SELECT t.task_id, t.description, t.status FROM task t JOIN feature f ON f.feature_id = t.feature WHERE f.feature_id = " + mysql.escape(feature);
     con.query(sql, function(err, result) {
       con.release();
       if(err) throw err;
