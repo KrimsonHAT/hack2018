@@ -7,12 +7,16 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/register', function(req, res, next){
-   res.render('start/register.html'); 
+  res.render('start/register.html'); 
 });
 
+router.post('/register', function(req, res, next) {
+  // GET POST parameters
+  var username = req.body.username;
+});
 
 router.get('/', function(req, res, next){
-   res.render('index.html'); 
+  res.render('index.html'); 
 });
 
 
