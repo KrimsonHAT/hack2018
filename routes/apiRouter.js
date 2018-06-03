@@ -34,7 +34,30 @@ router.get('/gProjects', function(req, res, next) {
       res.json(result);
     });
   });
-  
+});
+
+router.get('/gFeatures', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  if(req.session.project){
+    var project = req.session.project;
+
+    pool.getConnection(function(err, con) {
+      if(err) throw err;
+      sql = "SELECT f.name, f.feature_id, f.deadline, f.leader FROM project p JOIN feature f ON p.project_id = f.project_id WHERE p.project_id = " + mysql.escape(project);
+      con.query(sql, function(err, result) {
+        con.release();
+        if(err) throw err;
+        res.json(result);
+      });
+    });
+  }else{
+    res.send(false);
+  }
+
 });
 
 module.exports = router;
