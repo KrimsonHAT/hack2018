@@ -67,7 +67,7 @@ router.post('/login', function(req, res, next) {
 
 /* GET register */
 router.get('/register', function(req, res, next){
-  res.render('start/register.html'); 
+  res.render('start/register.html');
 });
 
 /* POST register */
@@ -122,6 +122,7 @@ router.post('/cProject', function(req, res, next) {
     if(err) throw err;
     sql = "INSERT INTO project (start_date, leader, name) VALUES (CURDATE()," + mysql.escape(user) + "," + mysql.escape(name) + ")";
     con.query(sql, function(err, result) {
+      if(err) throw err;
       sql = "INSERT INTO works_on (user, project_id) VALUES ?";
       values = [
         [user, result.insertId]

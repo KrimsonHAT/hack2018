@@ -6,15 +6,13 @@
 {
     background: white;
     height: 150px;
-    width: 150px;
     padding: 10px;
+    margin-bottom: 1.5rem;
     border: 2px solid #000;
     border-radius: 5%;
     -moz-border-radius: 5%;
-    margin-right: 20px;
-    margin-bottom: 20px;
 }
-.container {
+.containerTest {
     display: flex;
     flex-wrap: wrap; /* or inline-flex */
     margin-top: 100px;
@@ -33,5 +31,5 @@
 #add {
     background-image: url('../images/add.png');
     background-repeat:no-repeat;
-    background-position: center; 
+    background-position: center;
 }

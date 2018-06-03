@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- development version, includes helpful console warnings -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!--
         Bootstrap
@@ -15,32 +16,36 @@
     <!---->
 </head>
 
-</html>
-
 <body class="bg">
     <div class="container">
+      <div class="row" id="projectT">
+        <div class=" col-lg-3 col-md-4">
 
         <div class="card" id="add" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
 
         </div>
+
+      </div>
         <!--
             Single Card
                 When clicked a modal is shown
         -->
-        <div class="card" onclick="loadModal()" data-toggle="modal" data-target="#exampleModalCenter">
-            <center>
-
-                <p>Add github login</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                        aria-valuemax="100"></div>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                        aria-valuemax="100" style="width: 75%"></div>
-                </div>
-            </center>
+        <div class="col-lg-3 col-md-4"  v-for="project in projects">
+          <div class="card" onclick="loadModal()" data-toggle="modal"  data-target="#exampleModalCenter">
+              <center>
+                  <h3> {{ project.name }}</h3>
+                  <!--div class="progress">
+                      <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"aria-valuemax="100"></div>
+                  </div>
+                  <div class="progress">
+                      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                  </div-->
+                  <p>Leader: {{ project.leader }}</p>
+              </center>
+          </div>
         </div>
+      </div>
+
     </div>
 
 
@@ -75,11 +80,12 @@
 
     <!--Javascript-->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script src="/javascripts/main.js"></script>
 </body>
+
+</html>
