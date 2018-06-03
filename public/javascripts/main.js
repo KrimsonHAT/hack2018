@@ -10,13 +10,29 @@ $( "#send" ).click(function( event ) {
   } else {
     console.log($("#project-name"))
   }
-  
-
 });
 
+
+$.getJSON('api/gProjects', function(data){
+    //userNameInDB = data;
+    console.log(data);
+    data.forEach(function (item) {
+        app5.add(item);
+    });
+});
+
+
 var app5 = new Vue({
-  el: '#exampleModalCenterTitle',
+  el: '#projectT',
   data: {
-    message: 'Hello Vue.js!'
+    projects: [
+    ]
+  },
+  methods: {
+    add: function (project) {
+      this.projects.push(project);
+    }
   }
+
+
 })
