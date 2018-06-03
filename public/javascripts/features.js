@@ -19,7 +19,8 @@ $.getJSON('api/users', function(data){
 $('#chooseUserbt').on("click",function(){
     console.log($('#chooseUsers option:selected').text());
     if($('#chooseUsers option:selected').text() != "Choose..."){
-       console.log("exito");
+       
+        console.log("exito");
     }
 });
   
