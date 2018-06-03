@@ -44,8 +44,21 @@ h1{
 
 .btn-danger{
     margin-right: 10px;
+    background-color: rgb(130, 133, 122);
+    border-color:rgb(130, 133, 122);
+    
+}
+.btn-danger:hover{
+    background-color: rgb(79, 79, 85);
+    border-color:rgb(130, 133, 122);
+    
+
 }
 
+#button{
+    background-color: rgb(126, 6, 6);
+    border-color:rgb(126, 6, 6);
+}
 @media all and (min-width: 960px) {
     body{
         font-size: 20px;
@@ -71,6 +84,7 @@ h1{
     .btn{
         width: 6rem;
         font-size: 1rem;
+        background-color: aqua;
     }
  
 }
