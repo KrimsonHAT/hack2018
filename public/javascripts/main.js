@@ -4,7 +4,7 @@ function loadModal() {
 
 $( "#send" ).click(function( event ) {
 
-  if ($("#project-name").val().length === 0 ||  ($("#project-name").val().length > 32)) {
+  if ($("#project-name").val().trim().length === 0 ||  ($("#project-name").val().trim().length > 32)) {
     event.preventDefault();
     console.log("nope")
   } else {
