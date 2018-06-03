@@ -21,7 +21,7 @@ $(document).ready(function(){
 $("#button").click(function(event){
     askDataToDatabase();
     if(buttonValidation()){
-       
+
     }
     else{
         event.preventDefault();
@@ -90,7 +90,7 @@ $("#confirm-password").on("keyup change",function(){
 //-------------------------------------------//
 
 //CHECK PASSWORDS
-function checkPassword(){ 
+function checkPassword(){
     password = $("#password").val();
     confirmPassword = $("#confirm-password").val();
     if(confirmPassword!=password || (confirmPassword=="" || password=="")){
@@ -105,7 +105,7 @@ function isUsernameAvailable(){
         if($("#username").val() === userNameInDB[object].username || $("#username").val() == ""){
             return false;
         }
-    }    
+    }
     return true;
 }
 
@@ -114,4 +114,3 @@ function askDataToDatabase(){
         userNameInDB = data;
     });
 }
-
