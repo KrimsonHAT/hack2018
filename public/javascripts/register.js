@@ -1,6 +1,6 @@
 var password, confirmPassword;
 var firstTime = true;
-var userNameInDB, idQuinielaInDB;
+var userNameInDB;
 
 $(document).ready(function(){
     askDataToDatabase();
@@ -12,16 +12,6 @@ $(document).ready(function(){
         else{
             $("#usernameOnDatabase").html('<p class="text-muted" style="font-size:14px;">Ese nombre ya está siendo usado</p>');
             $("#username").css('border-color','red');
-        }
-    }
-    if($("#idQuiniela").val()!=""){
-        if(isIdQuinielaInDatabase()){
-            $("#idQuinielaHelp").html('');
-            $("#idQuiniela").css('border-color','#ced4da');       
-        }
-        else{
-            $("#idQuinielaHelp").html('<p class="text-muted" style="font-size:14px;">Ese ID no existe </p>');
-            $("#idQuiniela").css('border-color','red');
         }
     }
     buttonValidation();
@@ -40,7 +30,7 @@ $("#button").click(function(event){
 
 //BUTTON VALIDATION
 function buttonValidation(){
-    if(isUsernameAvailable() && isIdQuinielaInDatabase() && checkPassword()){
+    if(isUsernameAvailable() && checkPassword() && $("#username").val()!=""){
         $("#button").removeClass("disabled");
         $("#button").addClass("enabled");
         return true;
@@ -99,22 +89,6 @@ $("#confirm-password").on("keyup change",function(){
 });
 //-------------------------------------------//
 
-//IDQUINIELA VALIDATION
-$("#idQuiniela").on("change keyup",function(event){
-    console.log(event);
-    if(isIdQuinielaInDatabase()){
-        $("#idQuinielaHelp").html('');
-        $("#idQuiniela").css('border-color','#ced4da');
-        buttonValidation();       
-    }
-    else{
-        $("#idQuinielaHelp").html('<p class="text-muted" style="font-size:14px;">Ese ID no existe </p>');
-        $("#idQuiniela").css('border-color','red');
-        buttonValidation();
-    }
-    
-});
-
 //CHECK PASSWORDS
 function checkPassword(){ 
     password = $("#password").val();
@@ -124,15 +98,6 @@ function checkPassword(){
     }else{
         return true;
     }
-}
-
-function isIdQuinielaInDatabase(){
-    for(let object in idQuinielaInDB){
-        if($("#idQuiniela").val() == idQuinielaInDB[object].code && $("#idQuiniela").val() != ""){
-            return true;
-        }
-    }
-    return false;
 }
 
 function isUsernameAvailable(){
@@ -147,9 +112,6 @@ function isUsernameAvailable(){
 function askDataToDatabase(){
     $.getJSON('api/users', function(data){
         userNameInDB = data;
-    });
-    $.getJSON('/api/quinielas', function(data){
-        idQuinielaInDB = data;
     });
 }
 
