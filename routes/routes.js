@@ -158,6 +158,27 @@ router.post('/cFeature', function(req, res, next) {
   });
 });
 
+router.post('/cTask', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  var description = req.body.description;
+  var feature = parseInt(req.body.feature);
+
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = "INSERT INTO task (description, feature) VALUES ("+ mysql.escape(description) + ","+ mysql.escape(feature)  +")";
+    console.log(sql);
+    con.query(sql, function(err, result) {
+      con.release();
+        if(err) throw err;
+        res.redirect('back');
+      });
+  });
+});
+
 /* GET features */
 router.get('/project', function(req, res, next) {
   if(!req.session || !req.session.username){
