@@ -143,6 +143,7 @@ router.get('/project', function(req, res, next) {
     res.redirect('/login');
     return;
   }
+  
   var project = parseInt(req.query.project);
   var user = req.session.username;
   
