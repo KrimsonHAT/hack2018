@@ -11,6 +11,7 @@ router.get('/users', function(req, res, next) {
   pool.getConnection(function(err, con) {
     if(err) throw err;
     con.query("SELECT username FROM user", function(err, result) {
+      con.release();
       if(err) throw err;
       res.json(result);
     });
