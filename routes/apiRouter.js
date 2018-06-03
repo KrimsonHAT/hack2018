@@ -60,4 +60,53 @@ router.get('/gFeatures', function(req, res, next) {
 
 });
 
+// add user to project
+router.post('/addUser', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  if(!req.session.project){
+    res.send(false);
+    return;
+  }
+  var user = req.body.username;
+  var project = parseInt(req.session.project);
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = "INSERT INTO works_on (user, project_id) VALUES ?";
+    values = [
+      [user, project]
+    ];
+    con.query(sql, [values], function(err, result) {
+      con.release();
+      if(err) throw err;
+      res.send(true);
+    });
+  });
+});
+
+router.get('/gProyectUsers', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  if(!req.session.project){
+    res.send(false);
+    return;
+  }
+  var project = parseInt(req.session.project);
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = "SELECT u.username FROM user u JOIN works_on w ON u.username = w.user JOIN project p ON p.project_id = w.project_id WHERE w.project_id = " + mysql.escape(project);
+    con.query(sql, function(err, result) {
+      con.release();
+      if(err) throw err;
+      res.json(result);
+    });
+  });
+});
+
 module.exports = router;
