@@ -137,13 +137,34 @@ router.post('/cProject', function(req, res, next) {
 });
 
 /* GET features */
-router.get('/features', function(req, res, next) {
+router.get('/project', function(req, res, next) {
   if(!req.session || !req.session.username){
     req.flash('msg', 'Please login first');
     res.redirect('/login');
     return;
   }
-  res.render('platform/features');
+  var project = parseInt(req.query.project);
+  var user = req.session.username;
+  
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = "SELECT IF(p.leader = w.user, 1, 0) AS is_leader FROM project p JOIN works_on w ON p.project_id = w.project_id JOIN user u ON w.user = u.username WHERE w.user ="+mysql.escape(user)+" AND w.project_id =" + mysql.escape(project);
+    con.query(sql, function(err, result) {
+      con.release();
+      if(err) throw err;
+      // If there is a user with project
+      if(result.length > 0){
+        // Add project to session
+        req.session.project = project;
+        res.render('platform/features', {isLeader: result[0].is_leader});
+      }else{
+        // Remove project from session
+        req.session.project = null;
+        res.redirect('back');
+      }
+    });
+  });
+  //res.render('platform/features');
 });
 
 module.exports = router;
