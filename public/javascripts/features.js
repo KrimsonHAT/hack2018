@@ -4,7 +4,7 @@ $.getJSON('api/gFeatures', function(data){
     //userNameInDB = data;
     console.log(data);
     data.forEach(function (item) {
-        app5.add(item);
+        app_features.add(item);
     });
   });
   
@@ -16,16 +16,9 @@ $.getJSON('api/gOtherUsers', function(data){
 });
 $.getJSON('api/gProyectUsers', function(data){
     data.forEach(function(item){
-        console.log(item);
-         /*<div class="row" style="margin-bottom:2px">
-                <div class="col-2" id="userPhoto">
-                </div>
-                <div class="col-5" id="userName">
-                </div>
-                <div class="col-5" style="padding:3px;" id="userProgress">
-                </div>
-                
-            </div>*/
+        $("#getGroupUsers").append('<option value='+item.username+ '>' + item.username + '</option>');
+
+        
         $("#userRow").append(`
             <div class="row" style="margin-bottom:2px">
                 <div class="col-2" id="userPhoto">
