@@ -9,7 +9,7 @@ $.getJSON('api/gFeatures', function(data){
   });
   
 
-$.getJSON('api/users', function(data){
+$.getJSON('api/gOtherUsers', function(data){
     data.forEach(function(item){
         $('#chooseUsers').append('<option>' + item.username + '</option>');
     });
@@ -37,6 +37,8 @@ $.getJSON('api/gProyectUsers', function(data){
                     <div class="col-5" style="padding:3px;" id="userProgress">
                         <div class="progress"><div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div></div>
                     </div>
+            </div>
+            <div>
             </div>
             `
          );  
