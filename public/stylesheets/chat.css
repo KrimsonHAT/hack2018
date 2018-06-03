@@ -26,15 +26,30 @@ body {
 /**  chat-display **/
 
 .chat-display {
-  min-height: 300px;
+  min-height: 250px;
   overflow: scroll;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.sent{
+  margin-left: 50%;
+  background-color: #d50000;
+  color: white;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius:  10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.received {
+  margin-right: 50%;
+  background-color: #1565c0;
+  color: white !important;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius:  10px !important;
+  border-bottom-right-radius: 10px !important;
 }
 
 .chat{
     text-align: center;
-}
-
-.message{
-    font-size: 2rem;
 }

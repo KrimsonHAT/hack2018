@@ -28,9 +28,9 @@ function showMessage(data) {
   var newMessage = document.createElement('p');
 
   if (chatUsername.value == data.username) {
-    newMessage.className = 'bg-success chat-text .chat';
+    newMessage.className = 'sent chat-text .chat';
   } else {
-    newMessage.className = 'bg-info text-warning chat-text';
+    newMessage.className = 'received chat-text. chat';
   }
 
   newMessage.innerHTML = '<strong>' + data.username + '</strong>: ' + data.message;
