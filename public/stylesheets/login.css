@@ -3,12 +3,18 @@
 Al cuerpo de la
 pagina se aplica el tamaño de fuente
  */
+body, html{
+    height: 100%;
+}
+
  body{
     font-size: 12px;
     background-image: url("/images/imagroja.jpg");
+    height:100%;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
-   
-   
+    
 }
 /**
  * se aplica el ancho, margen centrado
