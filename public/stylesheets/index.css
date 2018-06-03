@@ -1,14 +1,13 @@
 html,body{height:100%;}
 
 body{
-    background-image: url('/images/landingPagebg.jpeg');
+    background-image: url('/images/landingPagebg2.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
 #logo{
-    position: fixed;
     top: .5rem;
     left: .5rem;
     width: 4rem;
@@ -34,8 +33,6 @@ body{
 
 .nav{
     width: 100%;
-    background-image: url('/images/landingPageMenu.jpg');
-    
 }
 
 .nav li{
@@ -49,7 +46,7 @@ text-align: center;
     color: #303030;
     padding: 1.2rem .5rem 0 .5rem;
     font-family: 'Lato', sans-serif;
-    font-size: 22px;
+    font-size: 26px;
     margin: 0 auto;
     color:white;
 }
