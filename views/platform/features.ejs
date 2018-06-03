@@ -21,139 +21,180 @@
 
 <body class="bg">
     <% include header.ejs %>
-    <div class="container">
-    <h2> <%= pName %> </h2>
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="container containerFeature">
-            <h1>Features</h1>
-            
-            <div class="row" id="features">
-                <% if(isLeader) { %>
-                <div class=" col-lg-3 col-md-4">
+        <div class="container">
+            <h2>
+                <%= pName %>
+            </h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="container containerFeature">
+                        <h1>Features</h1>
 
-                    
-                        <div class="card" id="add" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
-
-                        </div>
-                        
-
-                </div>
-                <% } %>
+                        <div class="row" id="features">
+                            <% if(isLeader) { %>
+                                <div class=" col-lg-3 col-md-4">
 
 
-                <!--
+                                    <div class="card" id="add" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+
+                                    </div>
+
+
+                                </div>
+                                <% } %>
+
+                                    <!-- Modal for checking information-->
+                                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalCenterTitle">---</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5>Administrator: </h5>
+                                                    <h6 class="modal-title" id="administrator">---</h6>
+                                                    
+                                                    <h6 class="modal-title" id="#todoList">---</h6>
+                                                    
+                                                    <div id="admin-button">
+                                                        <h5>Create a task</h5>
+                                                        <form method="POST" action="/cTask">
+                                                                <label for="recipient-name" class="col-form-label">New task description:</label>
+                                                                <input type="hidden" id="feature_id" name="feature">
+                                                                <input type="text" class="form-control" id="task-description" name="description">
+                                                                <button id="task_send" type="submit" class="btn btn-primary">Create</button>
+                                                        </form>
+                                                        
+                                                    </div>
+
+
+                                                </div>
+
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--
             Single Card
                 When clicked a modal is shown
         -->
-                <div class="col-lg-3 col-md-4" v-for="feature in features">
-                    <div class="card card-feature" onclick="loadModal()" data-toggle="modal" data-target="#exampleModalCenter">
-                        <center>
-                            <h3> {{ feature.name }}</h3>
-                            <!--div class="progress">
+                                    <div class="col-lg-3 col-md-4" v-for="feature in features">
+                                        <div class="card card-feature" v-on:click="something(feature.name, feature.leader, feature.feature_id)" data-toggle="modal"
+                                            data-target="#exampleModalCenter">
+                                            <center>
+                                                <h3> {{ feature.name }}</h3>
+                                                <!--div class="progress">
                             <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"aria-valuemax="100"></div>
                         </div>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
                         </div-->
-                            <p>Leader: {{ feature.leader }}</p>
-                        </center>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Modal to add a feature-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add new feature</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="/cFeature">
-
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">New feature name:</label>
-                                    <input type="text" class="form-control" id="feature-name" name="feature_name">
-                                </div>
-
-                                <div class="form-group">
-                                        <label for="recipient-name" class="col-form-label">Feature administrator: </label>
-                                        <select class="custom-select" id="getGroupUsers" name='leader'> 
-                                        </select>
+                                                <p>Leader: {{ feature.leader }}</p>
+                                            </center>
+                                        </div>
                                     </div>
-                                
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button id="send" type="submit" class="btn btn-primary">Create</button>
+
+
+                        <!-- Modal to add a feature-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add new feature</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="/cFeature">
+
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">New feature name:</label>
+                                                <input type="text" class="form-control" id="feature-name" name="feature_name">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Feature administrator: </label>
+                                                <select class="custom-select" id="getGroupUsers" name='leader'>
+                                                </select>
+                                            </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button id="send" type="submit" class="btn btn-primary">Create</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        </form>
+                        <!--END OF MODAL-->
                     </div>
                 </div>
-            </div>
-            <!--END OF MODAL-->
+
+                <div class="col-lg-4 container containerFeature">
+                    <p style="padding:6px;margin:0px;">Add a new user</p>
+                    <div class="input-group">
+                        <select class="custom-select" id="chooseUsers">
+                            <option selected>Choose...</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="chooseUserbt">Add</button>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <p>Global progress</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+
+                    <br>
+
+                    <p syle="padding:5px;">Users</p>
+                    <div class="row">
+                        <div class="col-2">
+                            <p>photo</p>
+                        </div>
+                        <div class="col-5">
+                            <p>username</p>
+                        </div>
+                        <div class="5">
+                            <p>progress</p>
+                        </div>
+                    </div>
+
+                    <div id="userRow"></div>
+                    <div class="row" style="margin-bottom:2px">
+                        <div class="col-2" id="userPhoto">
+                        </div>
+                        <div class="col-5" id="userName">
+                        </div>
+                        <div class="col-5" style="padding:3px;" id="userProgress">
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
-        
-        <div class="col-lg-4 container containerFeature">
-            <p style="padding:6px;margin:0px;">Add a new user</p>
-            <div class="input-group">
-                <select class="custom-select" id="chooseUsers"> 
-                    <option selected>Choose...</option>
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="chooseUserbt">Add</button>
-                </div>
-            </div>
-            
-            <br>
-            
-            <p>Global progress</p>
-            <div class="progress">
-            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            
-            <br>
-            
-            <p syle="padding:5px;">Users</p>
-            <div class="row">
-                <div class="col-2">
-                    <p>photo</p>
-                </div>
-                <div class="col-5">
-                    <p>username</p>
-                </div>
-                <div class="5">
-                    <p>progress</p>
-                </div>
-            </div>
-            
-            <div id="userRow"></div>
-            <div class="row" style="margin-bottom:2px">
-                <div class="col-2" id="userPhoto">
-                </div>
-                <div class="col-5" id="userName">
-                </div>
-                <div class="col-5" style="padding:3px;" id="userProgress">
-                </div>
-                
-            </div>
-            
-        </div>
-    </div>
-    </div>
-            <!--Javascript-->
+        <!--Javascript-->
 
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-                crossorigin="anonymous"></script>
-            <script src="/javascripts/features.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
+        <script src="/javascripts/features.js"></script>
         </div>
 </body>
