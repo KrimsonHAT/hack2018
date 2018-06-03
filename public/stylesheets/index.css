@@ -8,9 +8,12 @@ body{
 }
 
 #logo{
+    display: inline-block;
     top: .5rem;
     left: .5rem;
     width: 4rem;
+    padding: 8px;
+    margin-top: -35px;
 }
 
 #texto{
@@ -22,6 +25,7 @@ body{
 }
 
 #texto h1{
+    display:inline-block;
     font-size: 60px;
     font-family: 'Open Sans', sans-serif;
 }
@@ -77,10 +81,4 @@ position: relative;
 
 .nav li a:hover:after {
 width: 100%;
-}
-
-@media only screen and (max-width: 1000px) {
-    #texto{
-        display: none;
-    }
 }
