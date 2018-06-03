@@ -157,7 +157,7 @@ router.get('/project', function(req, res, next) {
       if(result.length > 0){
         // Add project to session
         req.session.project = project;
-        res.render('platform/features', {isLeader: result[0].is_leader, pName: result[0].name});
+        res.render('platform/features', {username: req.session.username, isLeader: result[0].is_leader, pName: result[0].name});
       }else{
         // Remove project from session
         req.session.project = null;
