@@ -4,6 +4,10 @@ var pool = require('../database');
 var bcrypt = require('bcrypt');
 var mysql = require('mysql');
 
+router.get('/', function(req, res, next){
+  res.render('index.html');
+});
+
 /* GET home page. */
 router.get('/login', function(req, res, next) {
   var msg = req.flash('msg');
@@ -30,9 +34,10 @@ router.post('/login', function(req, res, next) {
           bcrypt.compare(password, hash, function(err, doesMatch) {
             if(doesMatch){
               // If password was correct
+              con.release();
               req.session.regenerate(function(err){
                 req.session.username = username;
-                res.send('Bienvenido ' + username);
+                res.redirect('/menu');
               });
             }else{
               // If password was incorrect
@@ -88,8 +93,12 @@ router.post('/register', function(req, res, next) {
   });
 });
 
-router.get('/', function(req, res, next){
-  res.render('index.html');
+router.get('/menu', function(req, res, next) {
+  /* if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+  } */
+  res.render('platform/main'/* , {username: req.session.username} */);
 });
 
 
