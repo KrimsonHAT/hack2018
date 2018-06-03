@@ -5,8 +5,9 @@ pagina se aplica el tamaño de fuente
  */
  body{
     font-size: 12px;
-    background-image: url("../images/fondo.jpg");
+    background-image: url("/images/imagroja.jpg");
     background-size: cover;
+   
    
 }
 /**
@@ -17,7 +18,7 @@ pagina se aplica el tamaño de fuente
 #Contenedor{
 	width: 400px;
 	margin: 50px auto;
-    background-color: rgb(234, 46, 46) ;opacity: 1;
+    background-color: rgb(219, 161, 161) ;opacity: .8;
     border: 1px solid rgb(157, 215, 219);
     box-shadow:  rgba(0,0,0,0.5) 8px 8px 8px ;
 	height: 400px;
@@ -63,15 +64,4 @@ color: rgb(224, 224, 224);
 
 
 }
-
-Video {
-	position: fixed;
-	min-width: 100%;
-	min-height: 100%;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	z-index: -1;
-}
-
 
