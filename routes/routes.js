@@ -4,16 +4,18 @@ var pool = require('../database');
 var bcrypt = require('bcrypt');
 var mysql = require('mysql');
 
+/* GET home page */
 router.get('/', function(req, res, next){
   res.render('index.html');
 });
 
-/* GET home page. */
+/* GET login. */
 router.get('/login', function(req, res, next) {
   var msg = req.flash('msg');
   res.render('start/login', {expressFlash: msg});
 });
 
+/* POST login */
 router.post('/login', function(req, res, next) {
   // GET POST parameters
   var username = req.body.username;
@@ -63,10 +65,12 @@ router.post('/login', function(req, res, next) {
   }
 })
 
+/* GET register */
 router.get('/register', function(req, res, next){
   res.render('start/register.html'); 
 });
 
+/* POST register */
 router.post('/register', function(req, res, next) {
   // GET POST parameters
   var username = req.body.username;
@@ -93,13 +97,52 @@ router.post('/register', function(req, res, next) {
   });
 });
 
+/* --------------------------- Menu routes --------------------------------- */
+
+/* GET menu */
 router.get('/menu', function(req, res, next) {
-  /* if(!req.session || !req.session.username){
+  if(!req.session || !req.session.username){
     req.flash('msg', 'Please login first');
     res.redirect('/login');
-  } */
-  res.render('platform/main'/* , {username: req.session.username} */);
+    return;
+  }
+  res.render('platform/main', {username: req.session.username});
 });
 
+/* POST create project */
+router.post('/cProject', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  var name = req.body.projname;
+  var user = req.session.username;
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = "INSERT INTO project (start_date, leader, name) VALUES (CURDATE()," + mysql.escape(user) + "," + mysql.escape(name) + ")";
+    con.query(sql, function(err, result) {
+      sql = "INSERT INTO works_on (user, project_id) VALUES ?";
+      values = [
+        [user, result.insertId]
+      ];
+      con.query(sql, [values], function(err, result) {
+        con.release();
+        if(err) throw err;
+        res.redirect('back');
+      });
+    });
+  });
+});
+
+/* GET features */
+router.get('/features', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  res.render('platform/features');
+});
 
 module.exports = router;

@@ -37,6 +37,7 @@ CREATE TABLE project(
 	start_date DATE NOT NULL,
 	client_id INTEGER UNSIGNED,
 	leader VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    name VARCHAR(32) NOT NULL,
 	PRIMARY KEY(project_id),
     CONSTRAINT client_fk FOREIGN KEY (client_id) REFERENCES client(client_id)
     ON DELETE CASCADE ON UPDATE CASCADE,
