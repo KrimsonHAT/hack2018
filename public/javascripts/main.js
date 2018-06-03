@@ -1,6 +1,3 @@
-function loadModal() {
-  $('#myInput').trigger('focus')
-}
 
 $( "#send" ).click(function( event ) {
 
@@ -31,6 +28,9 @@ var app5 = new Vue({
   methods: {
     add: function (project) {
       this.projects.push(project);
+    },
+    enterProj: function(project) {
+      location.href="/project?project="+project;
     }
   }
 
