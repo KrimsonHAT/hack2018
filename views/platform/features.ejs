@@ -105,6 +105,13 @@
             
             <br>
             
+            <p>Global progress</p>
+            <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
+            <br>
+            
             <p syle="padding:5px;">Users</p>
             <div class="row">
                 <div class="col-2">
@@ -118,19 +125,15 @@
                 </div>
             </div>
             
-            <div class="row">
-                <div class="col-2" style="background-color:yellow">
-                    <p>photo</p>
+            <div id="userRow"></div>
+            <div class="row" style="margin-bottom:2px">
+                <div class="col-2" id="userPhoto">
                 </div>
-                <div class="col-5" style="background-color:black">
-                    <p>Oscar Sierra</p>
+                <div class="col-5" id="userName">
                 </div>
-
-                <div class="col-5" style="padding:3px;">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                <div class="col-5" style="padding:3px;" id="userProgress">
                 </div>
+                
             </div>
             
         </div>

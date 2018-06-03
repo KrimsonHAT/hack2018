@@ -11,16 +11,44 @@ $.getJSON('api/gFeatures', function(data){
 
 $.getJSON('api/users', function(data){
     data.forEach(function(item){
-        console.log(item);
         $('#chooseUsers').append('<option>' + item.username + '</option>');
+    });
+});
+$.getJSON('api/gProyectUsers', function(data){
+    data.forEach(function(item){
+        console.log(item);
+         /*<div class="row" style="margin-bottom:2px">
+                <div class="col-2" id="userPhoto">
+                </div>
+                <div class="col-5" id="userName">
+                </div>
+                <div class="col-5" style="padding:3px;" id="userProgress">
+                </div>
+                
+            </div>*/
+        $("#userRow").append(`
+            <div class="row" style="margin-bottom:2px">
+                <div class="col-2" id="userPhoto">
+                    <p>photo</p>
+                </div>
+                <div class="col-5" id="userName">
+                    <p>` + item.username +`</p>
+                </div>
+                    <div class="col-5" style="padding:3px;" id="userProgress">
+                        <div class="progress"><div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div></div>
+                    </div>
+            </div>
+            `
+         );  
     });
 });
 
 $('#chooseUserbt').on("click",function(){
-    console.log($('#chooseUsers option:selected').text());
-    if($('#chooseUsers option:selected').text() != "Choose..."){
-       
-        console.log("exito");
+    let selected = $('#chooseUsers option:selected').text();
+    if(selected != "Choose..."){
+       $.post('api/addUser', {username: selected}, function(data){
+            location.reload();
+       });
     }
 });
   
