@@ -162,7 +162,7 @@ router.get('/project', function(req, res, next) {
       }else{
         // Remove project from session
         req.session.project = null;
-        res.redirect('back');
+        res.redirect('/menu');
       }
     });
   });
