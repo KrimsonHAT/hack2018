@@ -148,7 +148,7 @@ router.get('/project', function(req, res, next) {
   
   pool.getConnection(function(err, con) {
     if(err) throw err;
-    sql = "SELECT IF(p.leader = w.user, 1, 0) AS is_leader FROM project p JOIN works_on w ON p.project_id = w.project_id JOIN user u ON w.user = u.username WHERE w.user ="+mysql.escape(user)+" AND w.project_id =" + mysql.escape(project);
+    sql = "SELECT p.name, IF(p.leader = w.user, 1, 0) AS is_leader FROM project p JOIN works_on w ON p.project_id = w.project_id JOIN user u ON w.user = u.username WHERE w.user ="+mysql.escape(user)+" AND w.project_id =" + mysql.escape(project);
     con.query(sql, function(err, result) {
       con.release();
       if(err) throw err;
@@ -156,7 +156,7 @@ router.get('/project', function(req, res, next) {
       if(result.length > 0){
         // Add project to session
         req.session.project = project;
-        res.render('platform/features', {isLeader: result[0].is_leader});
+        res.render('platform/features', {isLeader: result[0].is_leader, pName: result[0].name});
       }else{
         // Remove project from session
         req.session.project = null;

@@ -60,6 +60,7 @@ CREATE TABLE feature(
 	deadline DATETIME NOT NULL,
 	project_id INTEGER UNSIGNED NOT NULL,
 	leader VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+    name VARCHAR(32) NOT NULL,
 	PRIMARY KEY(feature_id),
     CONSTRAINT leader_feature_fk FOREIGN KEY (leader) REFERENCES user(username)
     ON DELETE CASCADE ON UPDATE CASCADE,
