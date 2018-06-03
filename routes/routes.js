@@ -106,6 +106,7 @@ router.get('/menu', function(req, res, next) {
     res.redirect('/login');
     return;
   }
+  req.session.project = null;
   res.render('platform/main', {username: req.session.username});
 });
 
@@ -143,7 +144,8 @@ router.get('/project', function(req, res, next) {
     res.redirect('/login');
     return;
   }
-  var project = parseInt(req.query.project);
+  
+  var project = (req.session.project)? req.session.project:parseInt(req.query.project);
   var user = req.session.username;
   
   pool.getConnection(function(err, con) {
