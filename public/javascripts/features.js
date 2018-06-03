@@ -8,6 +8,20 @@ $.getJSON('api/gFeatures', function(data){
     });
   });
   
+
+$.getJSON('api/users', function(data){
+    data.forEach(function(item){
+        console.log(item);
+        $('#chooseUsers').append('<option>' + item.username + '</option>');
+    });
+});
+
+$('#chooseUserbt').on("click",function(){
+    console.log($('#chooseUsers option:selected').text());
+    if($('#chooseUsers option:selected').text() != "Choose..."){
+       console.log("exito");
+    }
+});
   
   var app_features = new Vue({
     el: '#features',

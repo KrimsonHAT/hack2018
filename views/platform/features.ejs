@@ -2,6 +2,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- development version, includes helpful console warnings -->
@@ -20,8 +21,13 @@
 
 <body class="bg">
     <% include header.ejs %>
-        <div class="container">
-
+    <div class="container">
+    <h2> <%= pName %> </h2>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="container containerFeature">
+            <h1>Features</h1>
+            
             <div class="row" id="features">
                 <div class=" col-lg-3 col-md-4">
 
@@ -77,34 +83,28 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button id="send" type="submit" class="btn btn-primary">Create</button>
+                            <button id="send" type="Add" class="btn btn-primary">Create</button>
                         </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 container containerFeature">
+            <p style="padding:6px;margin:0px !important;">Add a new user</p>
+            <div class="input-group">
+                <select class="custom-select" id="chooseUsers"> 
+                    <option selected>Choose...</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="chooseUserbt">Add</button>
                 </div>
             </div>
-            <!--Modal-->
-
+        </div>
+    </div>
+    </div>
             <!--Javascript-->
 
 

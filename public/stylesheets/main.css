@@ -1,5 +1,8 @@
 .bg {
-    background: #4fc3f7;
+    background-image: url("/images/whiteBG.png");
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: 'Roboto', sans-serif;
 }
 .card
@@ -12,11 +15,17 @@
     border-radius: 5%;
     -moz-border-radius: 5%;
 }
+
+.containerFeature{
+    background-color: rgba(255,255,255,0.5);
+}
+
 .containerTest {
     display: flex;
     flex-wrap: wrap; /* or inline-flex */
     margin-top: 100px;
-  }
+}
+
   a.fill-div {
     display: block;
     height: 100%;
