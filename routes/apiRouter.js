@@ -109,4 +109,26 @@ router.get('/gProyectUsers', function(req, res, next) {
   });
 });
 
+router.get('/gOtherUsers', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  if(!req.session.project){
+    res.send(false);
+    return;
+  }
+  var project = parseInt(req.session.project);
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = 'SELECT username FROM user WHERE username NOT IN (SELECT u.username FROM user u JOIN works_on w ON u.username = w.user JOIN project p ON p.project_id = w.project_id WHERE p.project_id = '+mysql.escape(project)+');'
+    con.query(sql, function(err, result) {
+      con.release();
+      if(err) throw err;
+      res.json(result);
+    });
+  });
+});
+
 module.exports = router;
