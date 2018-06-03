@@ -55,7 +55,7 @@ $('#chooseUserbt').on("click",function(){
     },
     methods: {
       add: function (feature) {
-        this.projects.push(feature);
+        this.features.push(feature);
       }/*,
       enterProj: function(feature) {
         location.href="/project?project="+feature;
