@@ -4,7 +4,7 @@ $.getJSON('api/gFeatures', function(data){
     //userNameInDB = data;
     console.log(data);
     data.forEach(function (item) {
-        app5.add(item);
+        app_features.add(item);
     });
   });
   
