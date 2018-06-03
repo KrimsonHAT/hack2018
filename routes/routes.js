@@ -136,6 +136,28 @@ router.post('/cProject', function(req, res, next) {
   });
 });
 
+router.post('/cFeature', function(req, res, next) {
+  if(!req.session || !req.session.username){
+    req.flash('msg', 'Please login first');
+    res.redirect('/login');
+    return;
+  }
+  var user = req.body.leader;
+  var name = req.body.feature_name;
+  var project = parseInt(req.session.project);
+
+  pool.getConnection(function(err, con) {
+    if(err) throw err;
+    sql = "INSERT INTO feature (deadline, project_id, leader, name) VALUES (CURDATE()," + mysql.escape(project) + "," + mysql.escape(user) + "," + mysql.escape(name)  +")";
+    console.log(sql);
+    con.query(sql, function(err, result) {
+      con.release();
+        if(err) throw err;
+        res.redirect('back');
+      });
+  });
+});
+
 /* GET features */
 router.get('/project', function(req, res, next) {
   if(!req.session || !req.session.username){
