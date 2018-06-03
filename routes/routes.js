@@ -6,7 +6,8 @@ var mysql = require('mysql');
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
-  res.render('start/login.html');
+  var msg = req.flash('msg');
+  res.render('start/login', {expressFlash: msg});
 });
 
 router.post('/login', function(req, res, next) {
@@ -25,7 +26,7 @@ router.post('/login', function(req, res, next) {
           // If result had field
 
           var hash = result[0].password;  // Get password from field
-          console.log('hash');
+          console.log(hash);
           bcrypt.compare(password, hash, function(err, doesMatch) {
             if(doesMatch){
               // If password was correct
