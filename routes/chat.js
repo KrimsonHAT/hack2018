@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 /* GET home page. */
-router.get('/chat/:id', function (req, res, next) {
+router.get('/chat', function (req, res, next) {
     res.render('chat',
       { pageTitle: 'Chat',
         pageID: 'chat'
