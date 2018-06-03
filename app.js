@@ -2,6 +2,8 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var flash = require('express-flash');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
@@ -23,6 +25,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Configure express session
+app.use(session({
+  secret: 'This must be a secret',
+  name: 'SessionCoockie',
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
+
+// Configure flash messages
+app.use(flash());
+
 
 // Body parser for the post requests
 app.use(bodyParser.urlencoded({extended:true}));
