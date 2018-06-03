@@ -89,12 +89,12 @@ var app_features = new Vue({
                 myString = ""
                 data.forEach(function (item) {
                     //Append data
-                    myString += item.description + "\n";
+                    $("#todoList").append('<li>' + item.description + '</li>');
                 });
-                $("#todoList").html(myString);
-                console.log($("#todoList"));
+               
+                
             });
-
+            
         }
 
         /*,
