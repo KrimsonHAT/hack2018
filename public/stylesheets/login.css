@@ -24,7 +24,7 @@ body, html{
 #Contenedor{
 	width: 400px;
 	margin: 100px auto;
-    background-color: rgba(209, 188, 188, 0.9);
+    background-color: rgba(208, 188, 188, 0.9);
     box-shadow:  rgba(0,0,0,0.5) 8px 8px 8px ;
 	height: 400px;
 	border-radius:8px;
